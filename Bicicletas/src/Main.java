@@ -9,59 +9,59 @@ public class Main {
         System.out.println("1. Bicicleta urbana: $40 por hora");
         System.out.println("2. Bicicleta de montaña: $60 por hora");
         System.out.println("3. Bicicleta eléctrica: $90 por hora");
-        System.out.println("Selecciona opción:");
-
+        System.out.print("Selecciona opción: ");
         int opc = teclado.nextInt();
 
-        System.out.println("Ingresa las horas de renta:");
-        int horas = teclado.nextInt();
+        if (opc >= 1 && opc <= 3) {
 
-        System.out.println("¿Cuentas con membresía? (true/false)");
-        boolean membresia = teclado.nextBoolean();
+            System.out.print("Ingresa las horas de renta: ");
+            int horas = teclado.nextInt();
 
-        double subtotal = 0;
-        double descuento = 0;
-        double total = 0;
+            if (horas > 0) {
 
-        if (horas > 0) {
+                System.out.println("¿Cuentas con membresia?");
+                System.out.println("1. Sí");
+                System.out.println("2. No");
+                System.out.print("Selecciona opción: ");
+                int tieneMembresia = teclado.nextInt();
 
-            switch (opc) {
+                double subtotal = 0;
+                String tipoBici = "";
 
-                case 1:
-                    subtotal = 40 * horas;
-                    System.out.println("Tipo de bicicleta: Urbana");
-                    break;
-
-                case 2:
-                    subtotal = 60 * horas;
-                    System.out.println("Tipo de bicicleta: Montaña");
-                    break;
-
-                case 3:
-                    subtotal = 90 * horas;
-                    System.out.println("Tipo de bicicleta: Eléctrica");
-                    break;
-
-                default:
-                    System.out.println("Opción no válida");
-            }
-
-            if (opc >= 1 && opc <= 3) {
-
-                if (membresia) {
-                    descuento = subtotal * 0.20;
+                switch (opc) {
+                    case 1:
+                        subtotal = 40 * horas;
+                        tipoBici = "Bicicleta urbana";
+                        break;
+                    case 2:
+                        subtotal = 60 * horas;
+                        tipoBici = "Bicicleta de montaña";
+                        break;
+                    case 3:
+                        subtotal = 90 * horas;
+                        tipoBici = "Bicicleta eléctrica";
+                        break;
                 }
 
-                total = subtotal - descuento;
+                double pagofinal = subtotal;
 
+                if (tieneMembresia == 1) {
+                    pagofinal = subtotal * 0.80;
+                    System.out.println("Descuento 20%");
+                } else {
+                    System.out.println("Sin descuento");
+                }
+
+                System.out.println("Tipo de bicicleta: " + tipoBici);
                 System.out.println("Subtotal: $" + subtotal);
-                System.out.println("Descuento: $" + descuento);
-                System.out.println("Total a pagar: $" + total);
+                System.out.println("Total a pagar: $" + pagofinal);
+
+            } else {
+                System.out.println("Las horas deben ser mayores que cero");
             }
 
         } else {
-            System.out.println("La cantidad de horas debe ser mayor que cero.");
+            System.out.println("Opción no válida");
         }
-
     }
 }
